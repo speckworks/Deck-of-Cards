@@ -14,33 +14,46 @@ const getDeck = () => {
 			deck.push(card);
 		}
 	}
-
 	return deck;
 }
 
 getDeck()
-// console.log(deck)
 
-function shuffle(deck)
-{
+const shuffle = (deck)=>{
 	// for 1000 turns
 	// switch the values of two random cards
-	for (var i = 0; i < 1000; i++)
+	for (let i = 0; i < 1000; ++i)
 	{
-		var location1 = Math.floor((Math.random() * deck.length));
-		var location2 = Math.floor((Math.random() * deck.length));
-		var tmp = deck[location1];
-
+		let location1 = Math.floor((Math.random() * deck.length));
+		let location2 = Math.floor((Math.random() * deck.length));
+		let tmp = deck[location1];
 		deck[location1] = deck[location2];
 		deck[location2] = tmp;
 	}
+  return deck;
 }
 
 shuffle(deck);
 
+deck.sort((a, b) => {
+  //this sort function sorts the deck by Suit
+  var nameA = a.value; // ignore upper and lowercase
+  var nameB = b.value; // ignore upper and lowercase
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+
+  // names must be equal
+  return 0;
+});
+
 deck.sort(function(a, b) {
-  var nameA = a.value.toUpperCase(); // ignore upper and lowercase
-  var nameB = b.value.toUpperCase(); // ignore upper and lowercase
+  //this sort function sorts the deck by card "Value" (key)
+  var nameA = a.key; // ignore upper and lowercase
+  var nameB = b.key; // ignore upper and lowercase
   if (nameA < nameB) {
     return -1;
   }
